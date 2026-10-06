@@ -1,81 +1,6 @@
-/*const name = "Mariela Torres";
-
-let age = 19;
-
-let proyectofavorito = "animacionbulma"
-
-age = 20
-
-console.log(name);
-console.log(age);
-console.log(proyectofavorito);
-
-console.log ("Mi proyecto favorito es " + proyectofavorito);
-
-function mostrarProyecto(texto){
-    console.log(texto)
-}
-
-mostrarProyecto(name)
-mostrarProyecto(age)
-mostrarProyecto(proyectofavorito.toUpperCase())   
-
-if (age === 18){
-    console.log("Bienvenido a la vida adulta");
-} else if (age > 18){
-    console.log("Eres mayor de edad");
-} else {
-    console.log("Eres menor de edad");
-}
-
-if (age > 18 && proyectofavorito === "animacionbulma"){
-    console.log("Los datos coinciden");
-} else {
-    console.log("Los datos no coinciden");
-} 
-
-for (let i = 2; i <= 10; i =+ 2) {
-    console.log(i);
-}*/
-
-/*let numbers = [1, 2, 3, 4, 5];
-let pokedex = [{
-    pokemon_name: "Squirtle",
-    pokemon_type: "Agua",
-    pokemon_number: 4,
-    pokemon_description: "Tortuga que lanza chorros de agua por la boca.",
-}, {
-    pokemon_name: "Warturtle",
-    pokemon_type: "Agua",
-    pokemon_number: 5,
-    pokemon_description: "Tortuga más grande que lanza chorros de agua por la boca.",
-}, {
-    pokemon_name: "Blastoise",
-    pokemon_type: "Agua",
-    pokemon_number: 6,
-    pokemon_description: "Tortuga gigante que lanza chorros de agua por la boca.",
-    }, {
-    pokemon_name: "Charmander",
-    pokemon_type: "Fuego",
-    pokemon_number: 4,
-    pokemon_description: "Lagartija que lanza fuego por la boca.",
-}, {
-}, {
-    pokemon_name: "Charmaleon",
-    pokemon_type: "Fuego",
-    pokemon_number: 5,
-    pokemon_description: "Lagartija más grande que lanza fuego por la boca.",
-}, {
-}, {
-    pokemon_name: "Charizard",
-    pokemon_type: "Fuego",
-    pokemon_number: 6,
-    pokemon_description: "Lagartija gigante que lanza fuego por la boca.",
-}];*/
-
 let numbers = [1, 2, 3, 4, 5];
 
-let movie = [{
+let animatedmovies = [{
     movie_name: "El viaje de Chihiro",
     movie_year: 2001,
     movie_country: "Japon",
@@ -102,4 +27,27 @@ let movie = [{
     movie_description: "Una nina descubre una misteriosa version alternativa de su hogar que esconde un peligroso secreto."
 }];
 
-console.log("La cantidad de peliculas animadas es: " + movie.length); 
+let newMovie = {
+    movie_name: "El extraño mundo de Jack",
+    movie_year: 1993,
+    movie_country: "Estados Unidos",
+    movie_description: "El rey de las calabazas en el pueblo de las brujas planea secuestrar a Santa Claus."
+};
+
+let exists = false;
+animatedmovies.forEach(function(movie) {
+    if (movie.movie_name === newMovie.movie_name) {
+        exists = true;
+    }
+});
+
+if (!exists) {
+    animatedmovies.push(newMovie);
+}
+console.log(animatedmovies);
+
+let japaneseMovies = animatedmovies.filter(function(movie) {
+    return movie.movie_country === "Japon";
+});
+
+console.log(japaneseMovies);
