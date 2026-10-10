@@ -1,114 +1,162 @@
-let numbers = [1, 2, 3, 4, 5];
+//Ejercicios de Javascript
+//Ejercicio 1
+let vida = 100;
+let limiteInferior = 50;
+let limiteSuperior = 100; 
+let pociones = 5;
 
-let animatedmovies = [{
-    movie_name: "El viaje de Chihiro",
-    movie_year: 1991,
-    movie_country: "Japon",
-    movie_description: "Una nina entra en un mundo espiritual donde debe encontrar la forma de regresar con sus padres.",
-    id: 1
-}, {
-    movie_name: "Toy Story",
-    movie_year: 1995,
-    movie_country: "Estados Unidos",
-    movie_description: "Un grupo de juguetes cobra vida cuando los humanos no estan presentes y vive diversas aventuras.",
-    id: 2
-}, {
-    movie_name: "El gigante de hierro",
-    movie_year: 1999,
-    movie_country: "Estados Unidos",
-    movie_description: "Un niño descubre un enorme robot de origen desconocido y desarrolla una amistad con él.",
-    id: 3
-}, {
-    movie_name: "Mi vecino Totoro",
-    movie_year: 1988,
-    movie_country: "Japon",
-    movie_description: "Dos hermanas se mudan al campo y conocen a unas criaturas magicas que habitan el bosque.",
-    id: 4
-}, {
-    movie_name: "Coraline",
-    movie_year: 2009,
-    movie_country: "Estados Unidos",
-    movie_description: "Una nina descubre una misteriosa version alternativa de su hogar que esconde un peligroso secreto.",
-    id: 5
-}];
-
-/*
-//Elemento nuevo
-let newMovie = {
-    movie_name: "El extraño mundo de Jack",
-    movie_year: 1993,
-    movie_country: "Estados Unidos",
-    movie_description: "El rey de las calabazas en el pueblo de las brujas planea secuestrar a Santa Claus."
-};
-
-//Preguntar si ya existe ese elemento
-let exists = false;
-animatedmovies.forEach(function(movie) {
-    if (movie.movie_name === newMovie.movie_name) {
-        exists = true;
+let intervalo;
+intervalo = setInterval(() => {
+    vida = vida - 5;
+    console.log ("La vida del jugador es: " + vida);
+    
+    if(vida <= 0){
+      clearInterval(intervalo);
+      console.log ("El jugador ha muerto");
+       return;
     }
-});
 
-//Aregar elemento
-if (!exists) {
-    animatedmovies.push(newMovie);
+    if(vida < limiteInferior && pociones > 0){
+      vida = Math.min(vida + 30, limiteSuperior);
+      pociones --;
+      
+      console.log ("El jugador ha usado una pocion de curacion");
+      console.log ("La vida del jugador es: " + vida);
+      console.log ("Pociones restantes: " + pociones);
+
+    }
+
+}, 2000);
+
+//Ejercicio 2
+// Organiza los elementos de la bolsa
+/*
+const pokedex = [
+  {
+    nombre: "Pokeball",
+    cantidad: 5,
+    tipo: "Normal"
+  },
+  {
+    nombre: "Repel",
+    cantidad: 3,
+    tipo: "Normal"
+  },
+  {
+    nombre: "Quick Attack",
+    cantidad: 2,
+    tipo: "TM"
+  },
+  {
+    nombre: "Surf",
+    cantidad: 3,
+    tipo: "TM"
+  },
+  {
+    nombre: "Soda Pop",
+    cantidad: 10,
+    tipo: "Consumable"
+  }
+];
+
+function organizarBolsa(elementos) {
+
+  let normales = elementos.filter(elemento => elemento.tipo === "Normal");
+  let tms = elementos.filter(elemento => elemento.tipo === "TM");
+  let consumibles = elementos.filter(elemento => elemento.tipo === "Consumable");
+
+  normales.sort((a, b) => b.cantidad - a.cantidad);
+  tms.sort((a, b) => b.cantidad - a.cantidad);
+  consumibles.sort((a, b) => b.cantidad - a.cantidad);
+
+  console.log("Elementos normales:");
+  console.log(normales);
+
+  console.log("Maquinas tecnicas (TM):");
+  console.log(tms);
+
+  console.log("Consumibles:");
+  console.log(consumibles);
 }
-console.log(animatedmovies);
 
-//Filtrar elementos con FILTER
-let japaneseMovies = animatedmovies.filter(function(movie) {
-    return movie.movie_country === "Japon";
-});
-
-console.log(japaneseMovies);
+organizarBolsa(pokedex);
 */
 
-//CRUD
+// Ejercicio 3
+// Programa de ataque y calculo de daño entre dos Pokemones
+/*
+const pikachu = {
+  nombre: "Pikachu",
+  tipo: "Electrico",
+  ataque: "Impacto",
+  dano: 20,
+  vida: 50,
+  defensa: 10
+};
 
-//Create
-function createMovie(newMovie){
- animatedmovies.push(newMovie);
- console.log(animatedmovies)
+const charmander = {
+  nombre: "Charmander",
+  tipo: "Fuego",
+  ataque: "Ascuas",
+  dano: 15,
+  vida: 40,
+  defensa: 5
+};
+
+function mostrarEstadisticas(pokemon) {
+  console.log("Nombre: " + pokemon.nombre);
+  console.log("Tipo: " + pokemon.tipo);
+  console.log("Ataque: " + pokemon.ataque);
+  console.log("Dano: " + pokemon.dano);
+  console.log("Vida: " + pokemon.vida);
+  console.log("Defensa: " + pokemon.defensa);
 }
 
-createMovie({
-    movie_name: "El extraño mundo de Jack",
-    movie_year: 1993,
-    movie_country: "Estados Unidos",
-    movie_description: "El rey de las calabazas en el pueblo de las brujas planea secuestrar a Santa Claus.",
-    id: 6
-})
+function atacar(atacante, enemigo) {
 
-//Read
-function readMovies(name){
-    let japaneseMovies = animatedmovies.filter(function(movie) {
-    return movie.movie_name.includes(name);
-})
-console.log(japaneseMovies)
-}
-readMovies("Toy Story")
+  console.log(atacante.nombre + " ataca a " + enemigo.nombre);
+  console.log("Ataque utilizado: " + atacante.ataque);
 
-//Uptdate
-function uptdateMovie(id, name, year, country, description){
-    let position = animatedmovies.findIndex(movie => movie.id === id)
-    console.log(position)
-    animatedmovies[position] = {
-    movie_name: name,
-    movie_year: year,
-    movie_country: country,
-    movie_description: description,
-    id: id
-}
-console.log(animatedmovies)
-}
-uptdateMovie(1,"El viaje de Chihiro", 2001, "Japon", "Una nina entra en un mundo espiritual donde debe encontrar la forma de regresar con sus padres.")
+  let danoFinal = atacante.dano - enemigo.defensa;
 
-//Delete
-function deleteMovie(id){
- let newAnimatedMovies = animatedmovies.filter(function(movie) {
-    return movie.id != id;
-})
-animatedmovies = newAnimatedMovies
-console.log (newAnimatedMovies)
+  if (danoFinal < 0) {
+    danoFinal = 0;
+  }
+
+  enemigo.vida = enemigo.vida - danoFinal;
+
+  if (enemigo.vida < 0) {
+    enemigo.vida = 0;
+  }
+
+  console.log("Dano realizado: " + danoFinal);
+  console.log("Vida de " + enemigo.nombre + ": " + enemigo.vida);
 }
-deleteMovie(2)
+
+console.log("ESTADISTICAS INICIALES");
+
+mostrarEstadisticas(pikachu);
+mostrarEstadisticas(charmander);
+
+function combate(atacante, enemigo) {
+
+  atacar(atacante, enemigo);
+
+  if (enemigo.vida === 0) {
+    console.log(
+      "La batalla ha terminado. " +
+      enemigo.nombre +
+      " esta fuera de combate."
+    );
+    return;
+  }
+
+  setTimeout(function() {
+    combate(enemigo, atacante);
+  }, 1500);
+}
+
+console.log("COMIENZA LA BATALLA");
+
+combate(pikachu, charmander);
+*/
